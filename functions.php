@@ -31,7 +31,6 @@ function vkf_topic_post_type_custom( $args ){
 		'rest_base' => 'topics',
 	);
 	$args = array_merge( $args, $rest_args );
-	echo '<br />_|＼○_ﾋｬｯ ε=＼＿○ﾉ ﾎｰｳ!!'.'<br />'."\n";
 
 	return $args;
 }
@@ -84,13 +83,16 @@ register_field_group(array (
 */
 add_filter('the_title','vk_forum_title_custom');
 function vk_forum_title_custom( $title ) {
-// カスタムフィールドの値を取得
-$resolve = get_field('resolve_fields');
-// チェックが入っていたら
-if ( $resolve ) {
-// タイトルの先頭に [ 解決済 ] を追加
-	$title = single_post_title('[ 解決済 ] ',false);
-}
-// 値を返す
+	// カスタムフィールドの値を取得
+	$resolve = get_field('resolve_fields');
+	// チェックが入っていたら
+	if ( $resolve ) {
+		if(!preg_match('/解決済/',$title)){
+		  //$titleのなかに解決済が含まれていない場合（これがないとパンくずリストに２重で[解決済み]がついてしまう）
+			// タイトルの先頭に [ 解決済 ] を追加
+			$title = '[ 解決済 ] '.$title;
+		}
+	}
+	// 値を返す
 	return $title;
 }
