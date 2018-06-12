@@ -124,7 +124,7 @@ function vk_forum_title_custom( $title ) {
 
 			global $post;
 			$title_post = $post->post_title; // 今表示しているページのタイトル
-			$pattern =  '/'.$title_post.'/';
+			$pattern =  '/'.$title_post.'/u';
 			if( preg_match( $pattern, $title ) ){
 				//$titleのなかに $post->post_title が含まれていない場合（これがないとトピックス詳細で他のtitle部分にも[解決済み]がついてしまう）
 				// タイトルの先頭に [ 解決済 ] を追加
