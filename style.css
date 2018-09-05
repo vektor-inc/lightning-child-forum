@@ -8,3 +8,7 @@ Author:
 Tags:
 Version: 0.0
 */
+
+blockquote {
+	font-size: inherit;
+}

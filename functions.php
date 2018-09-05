@@ -49,9 +49,15 @@ function vk_forum_add_resolve_meta_box() {
 	// // タイプの取得を実行
 	// $post_types = get_post_types( $args );
 	// foreach ( (array) $post_types as $post_type ) {
+	if ( function_exists( 'veu_get_short_name' ) ) {
+		$short_name = veu_get_short_name() . ' ';
+	} else {
+		$short_name = '';
+	}
+
 	add_meta_box(
 		'resolve-meta-box', // metaboxのID
-		veu_get_little_short_name() . ' ' . __( 'Topic status', 'vkExUnit' ), // metaboxの表示名
+		$short_name . __( 'Topic status', 'vkExUnit' ), // metaboxの表示名
 		'vk_forum_resolve_meta_box_body', // このメタボックスに表示する中身の関数名
 		'topic', // このメタボックスをどの投稿タイプで表示するのか？
 		'side' // 表示する位置
